@@ -3,9 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portal-login feito</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='skportal.css') }}"
+    />
+    <title>Portal logado</title>
   </head>
   <body>
-    {%%}
+    <div class = cabeçalho>
+      <nav>
+        <a href="logout">sair</a>
+        <a href="/">login</a>
+      </nav>
+    </div>
+    <div class="titulo">
+      <h1>olá *</h1>
+      <p>suas informações a seguir</p>
+    </div>
+    <div class="corpo">
+      <p>*dia salario <br> *salario <br> *hora extra <br> *falta <br> *obs</p>
+    </div>
   </body>
 </html>
