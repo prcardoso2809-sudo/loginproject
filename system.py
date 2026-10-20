@@ -27,18 +27,28 @@ def index():
 
 @app.route('/portal')
 def portal():
-    usuario_atual = session['usuario_logado']
-    
-    # 1. Busca as informações do funcionário na base de dados
-    dados_funcionario = db.query.filter_by(usuario_atual).first()
+    # 1. Verifica se o usuário está logado na sessão
+    if 'usuario_logado' not in session:
+        return redirect(url_for('login'))
 
-    # 2. Verifica se ele é do RH olhando diretamente para a base de dados
-    # (Substitui 'funcao' e 'RH' pelos nomes exatos que usas na tua tabela)
+    # Pega o nome do usuário que guardamos na sessão durante o login
+    usuario_atual = session['usuario_logado']
+
+    # 2. Busca na base de dados o funcionário onde o campo 'user' é igual ao usuário logado
+    dados_funcionario = funcio.query.filter_by(user=usuario_atual).first()
+
+    # 3. Verifica se ele é do RH (olhando para a coluna 'funcao' do banco)
     is_rh = False
-    if dados_funcionario and dados_funcionario.funcao in ['RH','rh','Recursos Humanos']:
+    if dados_funcionario and dados_funcionario.funcao == 'RH':
         is_rh = True
 
-    return render_template('portal.html', func=dados_funcionario, usuario=usuario_atual, is_rh=is_rh)
+    # 4. Passa os dados para o HTML através do render_template
+    return render_template(
+        'portal.html', 
+        func=dados_funcionario,   # Aqui envias todas as informações do funcionário
+        usuario=usuario_atual,    # Envia o nome do usuário
+        is_rh=is_rh               # Envia se é ou não do RH (para controlar o botão)
+    )
 
 @app.route('/logout')
 def logout():
