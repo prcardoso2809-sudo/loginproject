@@ -66,6 +66,12 @@ button:hover {
     background-color: #1a2f4c; /* Fica um pouco mais escuro ao passar o rato */
 }
 
+.erro {
+  color: red;
+  margin-top: 10px;
+  font-size: x-large;
+}
+
 /* Ajustes exclusivos para telas de celular */
 @media (max-width: 600px) {
     /* Diminui o tamanho do título para não ocupar tantas linhas */

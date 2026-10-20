@@ -7,21 +7,28 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='skportal.css') }}"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portal logado</title>
   </head>
   <body>
     <div class = cabeçalho>
       <nav>
-        <a href="logout">sair</a>
-        <a href="/">login</a>
+        <a class="logout" href="/sair">sair</a>
+        <a class= 'login' href="/">login</a>
       </nav>
     </div>
     <div class="titulo">
       <h1>olá *</h1>
-      <p>suas informações a seguir</p>
+      <p class="ptitulo">suas informações a seguir</p>
     </div>
     <div class="corpo">
-      <p>*dia salario <br> *salario <br> *hora extra <br> *falta <br> *obs</p>
+      <p class = 'pcorpo'>*dia salario <br> *salario <br> *hora extra <br> *falta <br> *obs</p>
     </div>
   </body>
 </html>

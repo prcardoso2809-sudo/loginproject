@@ -15,33 +15,30 @@ db.init_app(app)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        usuario_input = request.form['usuario']
-        senha_input = request.form['senha']
-
-        # 1. Procura na base de dados de utilizadores
-        user = user_db.query.filter_by(user=usuario_input).first()
-
-        # 2. Valida a senha hash
-        if user and check_password_hash(user.senha, senha_input):
-            session['usuario_logado'] = user.user  # Guarda a sessão
+        input_u = request.form['usuario']
+        input_s = request.form['senha']
+        user = user_db.query.filter_by(user=input_u).first()
+        if user and check_password_hash(user.senha, input_s):
+            session['usuario_logado'] = user.user
             return redirect(url_for('portal'))
         else:
-            flash("Usuário ou senha incorretos. Tente novamente.")
-            return redirect(url_for('login'))
+            return render_template('index.html', erro = 'usuario ou senha incorretos!')
     return render_template('index.html')
 
 @app.route('/portal')
 def portal():
-    if 'usuario_logado' not in session:
-        return redirect(url_for('login')) # Se não tiver sessão, manda para o login
-
-    # Exemplo: Se o username for o mesmo que o campo 'funcionario' ou se houver um vínculo
     usuario_atual = session['usuario_logado']
     
-    # Busca na tabela de funcionários
-    dados_funcionario = funcio.query.filter_by(funcionario=usuario_atual).first()
+    # 1. Busca as informações do funcionário na base de dados
+    dados_funcionario = db.query.filter_by(usuario_atual).first()
 
-    return render_template('portal.html', func=dados_funcionario, usuario=usuario_atual)
+    # 2. Verifica se ele é do RH olhando diretamente para a base de dados
+    # (Substitui 'funcao' e 'RH' pelos nomes exatos que usas na tua tabela)
+    is_rh = False
+    if dados_funcionario and dados_funcionario.funcao in ['RH','rh','Recursos Humanos']:
+        is_rh = True
+
+    return render_template('portal.html', func=dados_funcionario, usuario=usuario_atual, is_rh=is_rh)
 
 @app.route('/logout')
 def logout():

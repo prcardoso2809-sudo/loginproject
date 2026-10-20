@@ -43,6 +43,9 @@
         />
         <br />
         <button type="submit">entrar</button>
+        {% if erro %}
+          <p class="erro">{{erro}}</p>
+        {% endif %}
       </form>
     </div>
   </body>
