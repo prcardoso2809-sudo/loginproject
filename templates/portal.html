@@ -24,11 +24,11 @@
       </nav>
     </div>
     <div class="titulo">
-      <h1>olá *</h1>
+      <h1>olá {{ usuario }}</h1>
       <p class="ptitulo">suas informações a seguir</p>
     </div>
     <div class="corpo">
-      <!-- <p class = 'pcorpo'>*dia salario <br> *salario <br> *hora extra <br> *falta <br> *obs</p> -->
+      <p class = 'pcorpo'>{{ func.d_salario }} <br> {{ func.salario }} <br> {{ func.h_ext }} <br> {{ func.faltas }} <br> {{ func.obs }} </p>
     </div>
   </body>
 </html>

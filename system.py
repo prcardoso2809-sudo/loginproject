@@ -29,7 +29,7 @@ def index():
 def portal():
     # 1. Verifica se o usuário está logado na sessão
     if 'usuario_logado' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
 
     # Pega o nome do usuário que guardamos na sessão durante o login
     usuario_atual = session['usuario_logado']
