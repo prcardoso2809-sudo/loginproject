@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prsolutions - cadrastro</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='skcadastro.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="titulo">
+      <h1>Prsolutions - cadastro</h1>
+      <h2>menu para cadastro</h2>
+    </div>
+
+    <div class="formulario">
+      <form action="" method="post">
+        <label for="usuario">Usuario:</label>
+        <input
+          type="text"
+          id="usuario"
+          name="usuario"
+          placeholder="digite o usuario de quem sera cadastrado."
+          required
+        />
+        <br />
+        <label for="senha">Senha:</label>
+        <input
+          type="password"
+          id="senha"
+          name="senha"
+          placeholder="digite a senha escolhida."
+          required
+        />
+        <br />
+        <button type="submit">cadastrar</button>
+      </form>
+    </div>
+  </body>
+</html>

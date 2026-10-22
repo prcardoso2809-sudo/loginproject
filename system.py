@@ -29,7 +29,8 @@ def index():
 def portal():
     # 1. Verifica se o usuário está logado na sessão
     if 'usuario_logado' not in session:
-        return redirect(url_for('index'))
+        flash('faça login!')
+        return redirect(url_for('index')) 
 
     # Pega o nome do usuário que guardamos na sessão durante o login
     usuario_atual = session['usuario_logado']
@@ -39,7 +40,7 @@ def portal():
 
     # 3. Verifica se ele é do RH (olhando para a coluna 'funcao' do banco)
     is_rh = False
-    if dados_funcionario and dados_funcionario.funcao == 'RH':
+    if dados_funcionario and dados_funcionario.funcao in ('Recursos Humanos', 'RH', 'rh'):
         is_rh = True
 
     # 4. Passa os dados para o HTML através do render_template
@@ -53,7 +54,11 @@ def portal():
 @app.route('/logout')
 def logout():
     session.pop('usuario_logado', None)
-    return redirect(url_for('login'))
+    return redirect(url_for('index'))
+
+@app.route('/cadastrar')
+def cadastro():
+    return render_template('cadastro.html')
 
 if __name__ == '__main__':
     with app.app_context():

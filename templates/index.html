@@ -24,12 +24,12 @@
 
     <div class="formulario">
       <form action="" method="post">
-        <label for="usuario">Usuario ou e-mail:</label>
+        <label for="usuario">Usuario:</label>
         <input
           type="text"
           id="usuario"
           name="usuario"
-          placeholder="digite seu usuario ou senha."
+          placeholder="digite seu usuario."
           required
         />
         <br />
@@ -46,6 +46,13 @@
         {% if erro %}
           <p class="erro">{{erro}}</p>
         {% endif %}
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <p class="erro">{{message}}</p>
+              {% endfor %}
+          {% endif %}
+        {% endwith %}
       </form>
     </div>
   </body>

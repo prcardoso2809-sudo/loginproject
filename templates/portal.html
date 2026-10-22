@@ -19,16 +19,26 @@
   <body>
     <div class = cabeçalho>
       <nav>
-        <a class="logout" href="/sair">sair</a>
+        <a class="logout" href="/logout">sair</a>
         <a class= 'login' href="/">login</a>
       </nav>
     </div>
     <div class="titulo">
+      {% if is_rh %}
+      <h1>ola {{ usuario }} do RH</h1>
+      <p>suas informações e recursos a seguir</p>
+      {% else %}
       <h1>olá {{ usuario }}</h1>
       <p class="ptitulo">suas informações a seguir</p>
+      {% endif %}
     </div>
     <div class="corpo">
+      {% if is_rh %}
       <p class = 'pcorpo'>{{ func.d_salario }} <br> {{ func.salario }} <br> {{ func.h_ext }} <br> {{ func.faltas }} <br> {{ func.obs }} </p>
+      <a href="/cadastrar" class="abotao">registrar funcionario</a>
+      {% else %}
+      <p class = 'pcorpo'>{{ func.d_salario }} <br> {{ func.salario }} <br> {{ func.h_ext }} <br> {{ func.faltas }} <br> {{ func.obs }} </p>
+      {% endif %}
     </div>
   </body>
 </html>

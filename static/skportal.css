@@ -72,3 +72,34 @@ body {
     justify-content: center;  /* Centraliza os links no meio do cabeçalho */
     align-items: center;
 }
+
+.abotao {
+    background-color: #243f64; /* Usa o azul-escuro do fundo do site */
+    color: white; /* Texto em branco */
+    padding: 12px 25px; /* Tamanho do botão */
+    border: none; /* Sem bordas feias */
+    border-radius: 8px; /* Cantos arredondados */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer; /* Transforma o ponteiro do rato numa mãozinha */
+    margin-top: 10px;
+    width: 15%;
+}
+
+.abotao:hover {
+    background-color: #8b9bd4;
+}
+
+@media (max-width: 600px) {
+    .abotao {
+        width: 100px;
+    }
+
+    body {
+        font-size: small;
+    }
+
+    .corpo {
+        padding: 3%;
+    }
+}
