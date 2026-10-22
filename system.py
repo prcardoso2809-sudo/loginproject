@@ -15,28 +15,28 @@ db.init_app(app)
 with app.app_context():
     db.create_all
     if not user_db.query.filter_by(user='teste').first():
-    u_teste = user_db(
-        user='teste', senha=generate_password_hash('123', method='scrypt')
-    )
-    f_teste = funcio(
-        funcionario='RH Teste',
-        user='teste',
-        funcao='Recursos Humanos',
-        h_ext=0,
-        faltas=0,
-        obs='Conta de teste RH',
-        salario=3500.0,
-        d_salario='Mensal',
-    )
-    db.session.add(u_teste)
-    db.session.add(f_teste)
+        u_teste = user_db(
+            user='teste', senha=generate_password_hash('123', method='scrypt')
+        )
+        f_teste = funcio(
+            funcionario='RH Teste',
+            user='teste',
+            funcao='Recursos Humanos',
+            h_ext=0,
+            faltas=0,
+            obs='Conta de teste RH',
+            salario=3500.0,
+            d_salario='Mensal',
+        )
+        db.session.add(u_teste)
+        db.session.add(f_teste)
 
-  # Verifica se o utilizador 'exemplo' já existe
-  if not user_db.query.filter_by(user='exemplo').first():
-    u_exemplo = user_db(
+    # Verifica se o utilizador 'exemplo' já existe
+    if not user_db.query.filter_by(user='exemplo').first():
+        u_exemplo = user_db(
         user='exemplo', senha=generate_password_hash('321', method='scrypt')
-    )
-    f_exemplo = funcio(
+        )
+        f_exemplo = funcio(
         funcionario='Funcionario Comun',
         user='exemplo',
         funcao='Operador',
@@ -49,8 +49,8 @@ with app.app_context():
     db.session.add(u_exemplo)
     db.session.add(f_exemplo)
 
-  # Guarda as alterações na base de dados
-  db.session.commit()
+    # Guarda as alterações na base de dados
+    db.session.commit()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
