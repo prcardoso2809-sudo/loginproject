@@ -5,6 +5,8 @@ from werkzeug.security import generate_password_hash,check_password_hash
 
 
 app = Flask(__name__)
+port = int(os.environ.get('PORT', 5000))
+app.run(host='0.0.0.0', port=port)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///funcionarios.db'
 app.config['SQLALCHEMY_BINDS'] = {
     'usuarios_bind': 'sqlite:///usuarios.db'
@@ -63,4 +65,4 @@ def cadastro():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run()
