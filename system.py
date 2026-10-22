@@ -2,7 +2,6 @@ from flask import Flask, redirect,request, url_for, render_template, session,fla
 from db import db
 from configdb import funcio,user_db
 from werkzeug.security import generate_password_hash,check_password_hash
-import os
 
 
 app = Flask(__name__)
@@ -12,45 +11,6 @@ app.config['SQLALCHEMY_BINDS'] = {
     }
 app.secret_key = '01001000 01100101 01111001 00101100 00100000 01110111 01101000 01100001 01110100 00100000 01100001 01110010 01100101 00100000 01111001 01101111 01110101 00100000 01100100 01101111 01101001 01101110 01100111 00100000 01101000 01100101 01110010 01100101 00111111 00100000 01101100 01101111 01101100'
 db.init_app(app)
-with app.app_context():
-    db.create_all
-    if not user_db.query.filter_by(user='teste').first():
-        u_teste = user_db(
-            user='teste', senha=generate_password_hash('123', method='scrypt')
-        )
-        f_teste = funcio(
-            funcionario='RH Teste',
-            user='teste',
-            funcao='Recursos Humanos',
-            h_ext=0,
-            faltas=0,
-            obs='Conta de teste RH',
-            salario=3500.0,
-            d_salario='Mensal',
-        )
-        db.session.add(u_teste)
-        db.session.add(f_teste)
-
-    # Verifica se o utilizador 'exemplo' já existe
-    if not user_db.query.filter_by(user='exemplo').first():
-        u_exemplo = user_db(
-        user='exemplo', senha=generate_password_hash('321', method='scrypt')
-        )
-        f_exemplo = funcio(
-        funcionario='Funcionario Comun',
-        user='exemplo',
-        funcao='Operador',
-        h_ext=5,
-        faltas=1,
-        obs='Conta de teste comum',
-        salario=2000.0,
-        d_salario='Mensal',
-    )
-    db.session.add(u_exemplo)
-    db.session.add(f_exemplo)
-
-    # Guarda as alterações na base de dados
-    db.session.commit()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -99,3 +59,8 @@ def logout():
 @app.route('/cadastrar')
 def cadastro():
     return render_template('cadastro.html')
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
