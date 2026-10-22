@@ -14,18 +14,10 @@ app.secret_key = '01001000 01100101 01111001 00101100 00100000 01110111 01101000
 db.init_app(app)
 with app.app_context():
     db.create_all
-    # 1. Limpa dados antigos para evitar duplicação (opcional)
-    funcio.query.delete()
-    user_db.query.delete()
-
-    # --- REGISTO 1: Utilizador RH (teste) ---
-    # Credenciais de Acesso (usuarios.db)
+    if not user_db.query.filter_by(user='teste').first():
     u_teste = user_db(
-        user='teste',
-        senha=generate_password_hash('123', method='scrypt')
+        user='teste', senha=generate_password_hash('123', method='scrypt')
     )
-    
-    # Dados Profissionais (funcionarios.db)
     f_teste = funcio(
         funcionario='RH Teste',
         user='teste',
@@ -34,17 +26,16 @@ with app.app_context():
         faltas=0,
         obs='Conta de teste RH',
         salario=3500.0,
-        d_salario='Mensal'
+        d_salario='Mensal',
     )
+    db.session.add(u_teste)
+    db.session.add(f_teste)
 
-    # --- REGISTO 2: Utilizador Comum (exemplo) ---
-    # Credenciais de Acesso (usuarios.db)
+  # Verifica se o utilizador 'exemplo' já existe
+  if not user_db.query.filter_by(user='exemplo').first():
     u_exemplo = user_db(
-        user='exemplo',
-        senha=generate_password_hash('321', method='scrypt')
+        user='exemplo', senha=generate_password_hash('321', method='scrypt')
     )
-    
-    # Dados Profissionais (funcionarios.db)
     f_exemplo = funcio(
         funcionario='Funcionario Comun',
         user='exemplo',
@@ -53,17 +44,13 @@ with app.app_context():
         faltas=1,
         obs='Conta de teste comum',
         salario=2000.0,
-        d_salario='Mensal'
+        d_salario='Mensal',
     )
-
-    # Adiciona e guarda tudo nas respetivas bases de dados
-    db.session.add(u_teste)
-    db.session.add(f_teste)
     db.session.add(u_exemplo)
     db.session.add(f_exemplo)
-    
-    db.session.commit()
-    print("Base de dados populada com sucesso! 🚀")
+
+  # Guarda as alterações na base de dados
+  db.session.commit()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
