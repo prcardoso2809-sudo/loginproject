@@ -12,6 +12,8 @@ app.config['SQLALCHEMY_BINDS'] = {
     }
 app.secret_key = '01001000 01100101 01111001 00101100 00100000 01110111 01101000 01100001 01110100 00100000 01100001 01110010 01100101 00100000 01111001 01101111 01110101 00100000 01100100 01101111 01101001 01101110 01100111 00100000 01101000 01100101 01110010 01100101 00111111 00100000 01101100 01101111 01101100'
 db.init_app(app)
+with app.app_context():
+    db.create_all
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -60,7 +62,3 @@ def logout():
 @app.route('/cadastrar')
 def cadastro():
     return render_template('cadastro.html')
-
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
