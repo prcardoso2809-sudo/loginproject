@@ -90,6 +90,13 @@ body {
     background-color: #8b9bd4;
 }
 
+.erro {
+  background-color: black;
+  color: red;
+  margin-top: 10px;
+  font-size: x-large;
+}
+
 @media (max-width: 600px) {
     .abotao {
         width: 100px;

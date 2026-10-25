@@ -17,10 +17,10 @@
     <title>Portal logado</title>
   </head>
   <body>
-    <div class = cabeçalho>
+    <div class="cabeçalho">
       <nav>
         <a class="logout" href="/logout">sair</a>
-        <a class= 'login' href="/">login</a>
+        <a class="login" href="/">login</a>
       </nav>
     </div>
     <div class="titulo">
@@ -34,11 +34,22 @@
     </div>
     <div class="corpo">
       {% if is_rh %}
-      <p class = 'pcorpo'>{{ func.d_salario }} <br> {{ func.salario }} <br> {{ func.h_ext }} <br> {{ func.faltas }} <br> {{ func.obs }} </p>
+      <p class="pcorpo">
+        seu salario cai {{ func.d_salario }} <br />seu salario atual é: {{
+        func.salario }} <br />você fez {{ func.h_ext }} horas extras<br />você
+        faltou {{ func.faltas }} vezes<br />observações: {{ func.obs }}
+      </p>
       <a href="/cadastrar" class="abotao">registrar funcionario</a>
       {% else %}
-      <p class = 'pcorpo'>{{ func.d_salario }} <br> {{ func.salario }} <br> {{ func.h_ext }} <br> {{ func.faltas }} <br> {{ func.obs }} </p>
-      {% endif %}
+      <p class="pcorpo">
+        seu salario cai {{ func.d_salario }} <br />seu salario atual é: {{
+        func.salario }} <br />você fez {{ func.h_ext }} horas extras<br />você
+        faltou {{ func.faltas }} vezes<br />observações: {{ func.obs }}
+      </p>
+      {% endif %} {% with messages = get_flashed_messages() %} {% if messages %}
+      {% for message in messages %}
+      <p class="erro">{{message}}</p>
+      {% endfor %} {% endif %} {% endwith %}
     </div>
   </body>
 </html>

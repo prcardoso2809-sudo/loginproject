@@ -56,9 +56,53 @@ def logout():
     session.pop('usuario_logado', None)
     return redirect(url_for('index'))
 
-@app.route('/cadastrar')
+@app.route('/cadastrar', methods = ['GET', 'POST'])
 def cadastro():
+    if 'usuario_logado' not in session:
+        flash('faça login se for do rh se não acesse!')
+        return redirect(url_for('index'))
+    usuario_atual = session['usuario_logado']
+    dados_funcionario = funcio.query.filter_by(user=usuario_atual).first()
+    if dados_funcionario.funcao != 'Recursos Humanos':
+        flash('essa pagina não é do seu acesso!')
+        return redirect(url_for('portal'))
+    if request.method == 'POST':
+        usuario_input = request.form['usuario']
+        senha_input = request.form['senha']
+        salario_input = request.form['salario']
+        d_salario_input = request.form['d_salario']
+        nome_input = request.form['funcionario']
+        funcao_input = request.form['funcao']
+
+        usuario_existente = user_db.query.filter_by(user=usuario_input).first()
+        if usuario_existente:
+            flash('usuario já existente!')
+            return redirect(url_for('cadastro'))
+
+        senha_criptografada = generate_password_hash(senha_input, method='scrypt')
+        novo_usuario = user_db(user=usuario_input, senha=senha_criptografada)
+
+        novo_funcionario = funcio(
+            funcionario=nome_input,
+            user=usuario_input,
+            funcao=funcao_input,
+            salario=salario_input,
+            d_salario=d_salario_input,
+            h_ext=0.0,
+            faltas=0,
+            obs='Seja bem vindo!'
+        )
+
+        db.session.add(novo_usuario)
+        db.session.add(novo_funcionario)
+        db.session.commit()
+
+        flash('usuario cadastrado com sucesso!')
+        return redirect(url_for('cadastro'))
+
     return render_template('cadastro.html')
+
+
 
 if __name__ == '__main__':
     with app.app_context():

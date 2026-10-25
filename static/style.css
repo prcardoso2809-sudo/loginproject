@@ -67,6 +67,7 @@ button:hover {
 }
 
 .erro {
+  background-color: black;
   color: red;
   margin-top: 10px;
   font-size: x-large;

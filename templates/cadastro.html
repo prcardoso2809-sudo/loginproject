@@ -42,7 +42,40 @@
           required
         />
         <br />
+        <label>salario inicial R$:</label>
+        <input
+          type="number"
+          name="salario"
+          step="0.01"
+          placeholder="digite o salario inicial ex:1.700"
+          required
+        />
+        <br />
+        <label>dia do salario</label>
+        <input
+          type="text"
+          name="d_salario"
+          placeholder="digite o dia do primeiro salario ex:todo dia 10"
+        />
+        <br />
+        <label>nome e função:</label>
+        <input
+          type="text"
+          name="funcionario"
+          placeholder="digite o nome do funcionario"
+        />
+        <select name="funcao" required>
+          <option value="errado">selecione uma função.</option>
+          <option value="operador">operador</option>
+          <option value="RH">recursos humanos</option>
+          <option value="gerente">gerente</option>
+        </select>
+        <br />
         <button type="submit">cadastrar</button>
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+        <p class="erro">{{message}}</p>
+        {% endfor %} {% endif %} {% endwith %}
       </form>
     </div>
   </body>

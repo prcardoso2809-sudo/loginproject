@@ -44,15 +44,11 @@
         <br />
         <button type="submit">entrar</button>
         {% if erro %}
-          <p class="erro">{{erro}}</p>
-        {% endif %}
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            {% for message in messages %}
-              <p class="erro">{{message}}</p>
-              {% endfor %}
-          {% endif %}
-        {% endwith %}
+        <p class="erro">{{erro}}</p>
+        {% endif %} {% with messages = get_flashed_messages() %} {% if messages
+        %} {% for message in messages %}
+        <p class="erro">{{message}}</p>
+        {% endfor %} {% endif %} {% endwith %}
       </form>
     </div>
   </body>
