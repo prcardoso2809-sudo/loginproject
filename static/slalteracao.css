@@ -1,0 +1,119 @@
+body {
+  background-color: #243f64;
+  font-family: "League Spartan", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.titulo {
+  background-color: #677ecf;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 3%;
+  padding: 1.5%;
+  height: 10%;
+  width: 46%;
+}
+
+.formulario {
+  background-color: #677ecf;
+  font-size: larger;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 3%;
+  padding: 2%;
+  height: 400px;
+  font-weight: bold;
+}
+
+h1,
+h2 {
+  margin: 0px;
+}
+
+h2 {
+  font-size: large;
+}
+
+input {
+  display: block; /* Faz cada campo ficar na sua própria linha */
+  width: 100%; /* Faz a caixa ocupar a largura disponível */
+  max-width: 300px; /* Define um tamanho limite para não ficar gigante */
+  padding: 10px; /* Dá espaço interno para o texto respirar */
+  margin-top: 5px; /* Espaço entre o label e a caixa */
+  margin-bottom: 15px; /* Espaço entre este campo e o próximo */
+  border: none; /* Tira a borda preta antiga */
+  border-radius: 8px; /* Cantos arredondados nas caixas de texto */
+  font-size: 14px;
+}
+
+button {
+    background-color: #243f64; /* Usa o azul-escuro do fundo do site */
+    color: white; /* Texto em branco */
+    padding: 12px 25px; /* Tamanho do botão */
+    border: none; /* Sem bordas feias */
+    border-radius: 8px; /* Cantos arredondados */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer; /* Transforma o ponteiro do rato numa mãozinha */
+    margin-top: 10px;
+}
+
+/* Efeito quando passas o rato por cima do botão! */
+button:hover {
+    background-color: #1a2f4c; /* Fica um pouco mais escuro ao passar o rato */
+}
+
+.erro {
+  background-color: black;
+  color: red;
+  margin-top: 10px;
+  font-size: x-large;
+}
+
+select {
+  display: block; /* Faz cada campo ficar na sua própria linha */
+  width: 100%; /* Faz a caixa ocupar a largura disponível */
+  max-width: 300px; /* Define um tamanho limite para não ficar gigante */
+  padding: 10px; /* Dá espaço interno para o texto respirar */
+  margin-top: 5px; /* Espaço entre o label e a caixa */
+  border: none; /* Tira a borda preta antiga */
+  border-radius: 8px; /* Cantos arredondados nas caixas de texto */
+  font-size: 14px;
+}
+/* Ajustes exclusivos para telas de celular */
+@media (max-width: 600px) {
+    /* Diminui o tamanho do título para não ocupar tantas linhas */
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 14px;
+    }
+
+    /* Reduz o espaçamento interno das caixas azuis */
+    .titulo, .formulario {
+        padding: 15px;
+        margin: 10px;
+        width: 85%;
+    }
+
+    .formulario {
+      height: 400px;
+      justify-content: center;
+    }
+
+    /* Ajusta a largura dos campos */
+    input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    /* Deixa o botão proporcional */
+    button {
+        width: 100%; /* Faz o botão ocupar toda a largura da caixa no celular */
+    }
+}

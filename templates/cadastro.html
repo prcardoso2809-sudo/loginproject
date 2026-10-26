@@ -6,7 +6,7 @@
     <title>prsolutions - cadrastro</title>
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='skcadastro.css') }}"
+      href="{{ url_for('static', filename='slcadastro.css') }}"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -47,7 +47,7 @@
           type="number"
           name="salario"
           step="0.01"
-          placeholder="digite o salario inicial ex:1.700"
+          placeholder="digite o salario inicial ex:1700.00"
           required
         />
         <br />
@@ -56,6 +56,7 @@
           type="text"
           name="d_salario"
           placeholder="digite o dia do primeiro salario ex:todo dia 10"
+          required
         />
         <br />
         <label>nome e função:</label>
@@ -63,9 +64,10 @@
           type="text"
           name="funcionario"
           placeholder="digite o nome do funcionario"
+          required
         />
         <select name="funcao" required>
-          <option value="errado">selecione uma função.</option>
+          <option value="errado" disabled selected>selecione uma função.</option>
           <option value="operador">operador</option>
           <option value="RH">recursos humanos</option>
           <option value="gerente">gerente</option>

@@ -42,13 +42,16 @@ def portal():
     is_rh = False
     if dados_funcionario and dados_funcionario.funcao in ('Recursos Humanos', 'RH', 'rh'):
         is_rh = True
+    
+    t_funs = funcio.query.all()
 
     # 4. Passa os dados para o HTML através do render_template
     return render_template(
         'portal.html', 
         func=dados_funcionario,   # Aqui envias todas as informações do funcionário
         usuario=usuario_atual,    # Envia o nome do usuário
-        is_rh=is_rh               # Envia se é ou não do RH (para controlar o botão)
+        is_rh=is_rh,               # Envia se é ou não do RH (para controlar o botão)
+        t_funcs=t_funs
     )
 
 @app.route('/logout')
@@ -79,6 +82,7 @@ def cadastro():
             flash('usuario já existente!')
             return redirect(url_for('cadastro'))
 
+
         senha_criptografada = generate_password_hash(senha_input, method='scrypt')
         novo_usuario = user_db(user=usuario_input, senha=senha_criptografada)
 
@@ -102,6 +106,24 @@ def cadastro():
 
     return render_template('cadastro.html')
 
+@app.route('/gerenciar', methods = ['GET', 'POST'])
+def alterar():
+    if 'usuario_logado' not in session:
+        flash('faça login se for do rh se não acesse!')
+        return redirect(url_for('index'))
+    usuario_atual = session['usuario_logado']
+    dados_funcionario = funcio.query.filter_by(user=usuario_atual).first()
+    if dados_funcionario.funcao != 'Recursos Humanos' or dados_funcionario.funcao != 'recursos humanos':
+        flash('essa pagina não é do seu acesso!')
+        return redirect(url_for('portal'))
+    if request.method == 'POST':
+        salario_input = request.form['salario']
+        d_salario_input = request.form['d_salario']
+        nome_input = request.form['funcionario']
+        funcao_input = request.form['funcao']
+    
+
+    return render_template('alteracao.html')
 
 
 if __name__ == '__main__':

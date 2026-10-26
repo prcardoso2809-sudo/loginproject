@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='skportal.css') }}"
+      href="{{ url_for('static', filename='slportal.css') }}"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -39,7 +39,17 @@
         func.salario }} <br />você fez {{ func.h_ext }} horas extras<br />você
         faltou {{ func.faltas }} vezes<br />observações: {{ func.obs }}
       </p>
+      <p>{{ t_funcs }}</p>
       <a href="/cadastrar" class="abotao">registrar funcionario</a>
+      <form action="" method="get" id="editar">
+        <select name="id" id="funcios" required>
+          <option value="" disabled selected>escolha um funcionario</option>
+          {% for f in t_funcs %}
+          <option value="{{ f.id }}">{{ f.funcionario }}</option>
+          {% endfor %}
+        </select>
+        <button type="button" onclick="gerenciar()">gernciar coloborador</button>
+      </form>
       {% else %}
       <p class="pcorpo">
         seu salario cai {{ func.d_salario }} <br />seu salario atual é: {{
@@ -51,5 +61,18 @@
       <p class="erro">{{message}}</p>
       {% endfor %} {% endif %} {% endwith %}
     </div>
+    <script>
+      function gerenciar() {
+        var select = document.getElementById("funcionario-select");
+        var idFuncionario = select.value;
+
+        if (idFuncionario) {
+          // Redireciona o navegador para a rota /editar/<id>
+          window.location.href = "/editar/" + idFuncionario;
+        } else {
+          alert("Por favor, selecione um funcionário primeiro.");
+        }
+      }
+    </script>
   </body>
 </html>

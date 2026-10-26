@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prsolutions - cadrastro</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='slalteracao.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="titulo">
+      <h1>Prsolutions - gerenciamento</h1>
+      <h2>menu para gerenciar colaboradores</h2>
+    </div>
+    <div class="formulario">
+      <form method="post">
+        <br />
+        <label>salario atual R$:</label>
+        <input
+          type="number"
+          name="salario"
+          step="0.01"
+          placeholder="salario atual * ex. de ateração:1700.00"
+          required
+        />
+        <br />
+        <label>dia do salario atual:</label>
+        <input
+          type="text"
+          name="d_salario"
+          placeholder="atual:* ex. de alteração:todo dia 10"
+        />
+        <br />
+        <label>função:</label>
+        <input
+          type="text"
+          name="funcionario"
+          placeholder="digite o nome do funcionario"
+        />
+        <select name="funcao" required>
+          <option value="" disabled selected>selecione uma função.</option>
+          <option value="operador">operador</option>
+          <option value="RH">recursos humanos</option>
+          <option value="gerente">gerente</option>
+        </select>
+        <br />
+        <button type="submit">alterar</button>
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+        <p class="erro">{{message}}</p>
+        {% endfor %} {% endif %} {% endwith %}
+      </form>
+    </div>
+  </body>
+</html>
