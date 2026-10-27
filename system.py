@@ -119,8 +119,11 @@ def alterar(id):
         flash('essa pagina não é do seu acesso!')
         return redirect(url_for('portal'))
     if request.method == 'POST':
+        funcio_selecio.faltas = request.form['falta']
+        funcio_selecio.h_ext = request.form['hs_ext']
         funcio_selecio.salario = request.form['salario']
         funcio_selecio.d_salario = request.form['d_salario']
+        funcio_selecio.obs = request.form['obsv']
         funcio_selecio.funcao = request.form['funcao']
         db.session.commit()
         flash('colaborador gerenciado com sucesso!')
