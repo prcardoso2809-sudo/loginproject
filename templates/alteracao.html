@@ -22,6 +22,7 @@
       <h2>menu para gerenciar colaboradores</h2>
     </div>
     <div class="formulario">
+      <p>obs: caso uma informação não mudar escreva a atual para evitar erros</p>
       <form method="post">
         <br />
         <label>salario atual R$:</label>
@@ -29,7 +30,7 @@
           type="number"
           name="salario"
           step="0.01"
-          placeholder="salario atual * ex. de ateração:1700.00"
+          placeholder="salario atual:{{ infos.salario }} ex. de ateração:1700.00"
           required
         />
         <br />
@@ -37,15 +38,10 @@
         <input
           type="text"
           name="d_salario"
-          placeholder="atual:* ex. de alteração:todo dia 10"
+          placeholder="atual:{{ infos.d_salario }} ex. de alteração:todo dia 10"
         />
         <br />
         <label>função:</label>
-        <input
-          type="text"
-          name="funcionario"
-          placeholder="digite o nome do funcionario"
-        />
         <select name="funcao" required>
           <option value="" disabled selected>selecione uma função.</option>
           <option value="operador">operador</option>

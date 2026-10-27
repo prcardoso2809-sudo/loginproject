@@ -58,7 +58,7 @@ body {
     flex-direction: column;
     border-radius: 15px;
     margin: 1%;
-    height: 250px;
+    height: 270px;
     padding: 1.5%;
     font-weight: bold;
 }
@@ -73,7 +73,7 @@ body {
     align-items: center;
 }
 
-.abotao {
+.abotao, button {
     background-color: #243f64; /* Usa o azul-escuro do fundo do site */
     color: white; /* Texto em branco */
     padding: 12px 25px; /* Tamanho do botão */
@@ -83,7 +83,7 @@ body {
     font-weight: bold;
     cursor: pointer; /* Transforma o ponteiro do rato numa mãozinha */
     margin-top: 10px;
-    width: 15%;
+    width: 20%;
 }
 
 .abotao:hover {
@@ -95,6 +95,17 @@ body {
   color: red;
   margin-top: 10px;
   font-size: x-large;
+}
+
+select {
+  display: block; /* Faz cada campo ficar na sua própria linha */
+  width: 100%; /* Faz a caixa ocupar a largura disponível */
+  max-width: 300px; /* Define um tamanho limite para não ficar gigante */
+  padding: 10px; /* Dá espaço interno para o texto respirar */
+  margin-top: 5px; /* Espaço entre o label e a caixa */
+  border: none; /* Tira a borda preta antiga */
+  border-radius: 8px; /* Cantos arredondados nas caixas de texto */
+  font-size: 14px;
 }
 
 @media (max-width: 600px) {

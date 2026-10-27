@@ -25,10 +25,10 @@
     </div>
     <div class="titulo">
       {% if is_rh %}
-      <h1>ola {{ usuario }} do RH</h1>
+      <h1>ola {{ func.funcionario }} do RH</h1>
       <p>suas informações e recursos a seguir</p>
       {% else %}
-      <h1>olá {{ usuario }}</h1>
+      <h1>olá {{ func.funcionario }}</h1>
       <p class="ptitulo">suas informações a seguir</p>
       {% endif %}
     </div>
@@ -39,7 +39,6 @@
         func.salario }} <br />você fez {{ func.h_ext }} horas extras<br />você
         faltou {{ func.faltas }} vezes<br />observações: {{ func.obs }}
       </p>
-      <p>{{ t_funcs }}</p>
       <a href="/cadastrar" class="abotao">registrar funcionario</a>
       <form action="" method="get" id="editar">
         <select name="id" id="funcios" required>
@@ -48,7 +47,9 @@
           <option value="{{ f.id }}">{{ f.funcionario }}</option>
           {% endfor %}
         </select>
-        <button type="button" onclick="gerenciar()">gernciar coloborador</button>
+        <button type="button" onclick="gerenciar()">
+          gerenciar coloborador
+        </button>
       </form>
       {% else %}
       <p class="pcorpo">
@@ -63,12 +64,12 @@
     </div>
     <script>
       function gerenciar() {
-        var select = document.getElementById("funcionario-select");
+        var select = document.getElementById("funcios");
         var idFuncionario = select.value;
 
         if (idFuncionario) {
           // Redireciona o navegador para a rota /editar/<id>
-          window.location.href = "/editar/" + idFuncionario;
+          window.location.href = "/gerenciar/" + idFuncionario;
         } else {
           alert("Por favor, selecione um funcionário primeiro.");
         }

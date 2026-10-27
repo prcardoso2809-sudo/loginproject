@@ -50,20 +50,20 @@ input {
 }
 
 button {
-    background-color: #243f64; /* Usa o azul-escuro do fundo do site */
-    color: white; /* Texto em branco */
-    padding: 12px 25px; /* Tamanho do botão */
-    border: none; /* Sem bordas feias */
-    border-radius: 8px; /* Cantos arredondados */
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer; /* Transforma o ponteiro do rato numa mãozinha */
-    margin-top: 10px;
+  background-color: #243f64; /* Usa o azul-escuro do fundo do site */
+  color: white; /* Texto em branco */
+  padding: 12px 25px; /* Tamanho do botão */
+  border: none; /* Sem bordas feias */
+  border-radius: 8px; /* Cantos arredondados */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer; /* Transforma o ponteiro do rato numa mãozinha */
+  margin-top: 10px;
 }
 
 /* Efeito quando passas o rato por cima do botão! */
 button:hover {
-    background-color: #1a2f4c; /* Fica um pouco mais escuro ao passar o rato */
+  background-color: #1a2f4c; /* Fica um pouco mais escuro ao passar o rato */
 }
 
 .erro {
@@ -85,35 +85,36 @@ select {
 }
 /* Ajustes exclusivos para telas de celular */
 @media (max-width: 600px) {
-    /* Diminui o tamanho do título para não ocupar tantas linhas */
-    h1 {
-        font-size: 20px;
-    }
+  /* Diminui o tamanho do título para não ocupar tantas linhas */
+  h1 {
+    font-size: 20px;
+  }
 
-    h2 {
-        font-size: 14px;
-    }
+  h2 {
+    font-size: 14px;
+  }
 
-    /* Reduz o espaçamento interno das caixas azuis */
-    .titulo, .formulario {
-        padding: 15px;
-        margin: 10px;
-        width: 85%;
-    }
+  /* Reduz o espaçamento interno das caixas azuis */
+  .titulo,
+  .formulario {
+    padding: 15px;
+    margin: 10px;
+    width: 85%;
+  }
 
-    .formulario {
-      height: 400px;
-      justify-content: center;
-    }
+  .formulario {
+    height: 400px;
+    justify-content: center;
+  }
 
-    /* Ajusta a largura dos campos */
-    input {
-        font-size: 14px;
-        padding: 8px;
-    }
+  /* Ajusta a largura dos campos */
+  input {
+    font-size: 14px;
+    padding: 8px;
+  }
 
-    /* Deixa o botão proporcional */
-    button {
-        width: 100%; /* Faz o botão ocupar toda a largura da caixa no celular */
-    }
+  /* Deixa o botão proporcional */
+  button {
+    width: 100%; /* Faz o botão ocupar toda a largura da caixa no celular */
+  }
 }

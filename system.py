@@ -106,24 +106,26 @@ def cadastro():
 
     return render_template('cadastro.html')
 
-@app.route('/gerenciar', methods = ['GET', 'POST'])
-def alterar():
+@app.route('/gerenciar/<int:id>', methods = ['GET', 'POST'])
+def alterar(id):
+    funcio_selecio = funcio.query.get_or_404(id)
     if 'usuario_logado' not in session:
         flash('faça login se for do rh se não acesse!')
         return redirect(url_for('index'))
     usuario_atual = session['usuario_logado']
     dados_funcionario = funcio.query.filter_by(user=usuario_atual).first()
-    if dados_funcionario.funcao != 'Recursos Humanos' or dados_funcionario.funcao != 'recursos humanos':
+    cargo_atual = dados_funcionario.funcao.lower() if dados_funcionario and dados_funcionario.funcao else ""
+    if cargo_atual not in ('recursos humanos', 'rh'):
         flash('essa pagina não é do seu acesso!')
         return redirect(url_for('portal'))
     if request.method == 'POST':
-        salario_input = request.form['salario']
-        d_salario_input = request.form['d_salario']
-        nome_input = request.form['funcionario']
-        funcao_input = request.form['funcao']
-    
-
-    return render_template('alteracao.html')
+        funcio_selecio.salario = request.form['salario']
+        funcio_selecio.d_salario = request.form['d_salario']
+        funcio_selecio.funcao = request.form['funcao']
+        db.session.commit()
+        flash('colaborador gerenciado com sucesso!')
+        return redirect(url_for('portal'))
+    return render_template('alteracao.html', infos = funcio_selecio)
 
 
 if __name__ == '__main__':
