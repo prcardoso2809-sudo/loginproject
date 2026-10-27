@@ -66,7 +66,8 @@ def cadastro():
         return redirect(url_for('index'))
     usuario_atual = session['usuario_logado']
     dados_funcionario = funcio.query.filter_by(user=usuario_atual).first()
-    if dados_funcionario.funcao != 'Recursos Humanos':
+    cargo_atual = dados_funcionario.funcao.lower() if dados_funcionario and dados_funcionario.funcao else ""
+    if cargo_atual not in ('recursos humanos', 'rh'):
         flash('essa pagina não é do seu acesso!')
         return redirect(url_for('portal'))
     if request.method == 'POST':

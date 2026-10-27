@@ -39,7 +39,6 @@
         func.salario }} <br />você fez {{ func.h_ext }} horas extras<br />você
         faltou {{ func.faltas }} vezes<br />observações: {{ func.obs }}
       </p>
-      <a href="/cadastrar" class="abotao">registrar funcionario</a>
       <form action="" method="get" id="editar">
         <select name="id" id="funcios" required>
           <option value="" disabled selected>escolha um funcionario</option>
@@ -50,6 +49,7 @@
         <button type="button" onclick="gerenciar()">
           gerenciar coloborador
         </button>
+        <a href="/cadastrar" class="abotao">registrar funcionario</a>
       </form>
       {% else %}
       <p class="pcorpo">
