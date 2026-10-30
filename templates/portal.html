@@ -39,6 +39,7 @@
         func.salario }} <br />você fez {{ func.h_ext }} horas extras<br />você
         faltou {{ func.faltas }} vezes<br />observações: {{ func.obs }}
       </p>
+      <a href="/cadastrar" class="abotao">registrar funcionario</a>
       <form action="" method="get" id="editar">
         <select name="id" id="funcios" required>
           <option value="" disabled selected>escolha um funcionario</option>
@@ -49,7 +50,19 @@
         <button type="button" onclick="gerenciar()">
           gerenciar coloborador
         </button>
-        <a href="/cadastrar" class="abotao">registrar funcionario</a>
+      </form>
+      <form
+        id="form-excluir"
+        method="POST"
+        onsubmit="
+          return confirm(
+            'Tens a certeza que pretendes apagar este funcionário?',
+          );
+        "
+      >
+        <button type="submit" style="background-color: red; color: white">
+          Excluir Colaborador
+        </button>
       </form>
       {% else %}
       <p class="pcorpo">
@@ -74,6 +87,16 @@
           alert("Por favor, selecione um funcionário primeiro.");
         }
       }
+      document.getElementById('form-excluir').addEventListener('submit', function(e) {
+        var select = document.getElementById("funcios");
+        var idFuncionario = select.value;
+        if (!idFuncionario) {
+            e.preventDefault();
+            alert("Por favor, selecione um funcionário para excluir.");
+        } else {
+            this.action = "/excluir/" + idFuncionario;
+        }
+    });
     </script>
   </body>
 </html>

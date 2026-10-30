@@ -58,7 +58,7 @@ body {
     flex-direction: column;
     border-radius: 15px;
     margin: 1%;
-    height: 270px;
+    height: 300px;
     padding: 1.5%;
     font-weight: bold;
 }
@@ -84,9 +84,10 @@ body {
     cursor: pointer; /* Transforma o ponteiro do rato numa mãozinha */
     margin-top: 10px;
     width: 20%;
+    text-decoration: none;
 }
 
-.abotao:hover {
+.abotao:hover, button:hover {
     background-color: #8b9bd4;
 }
 

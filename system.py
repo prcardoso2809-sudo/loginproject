@@ -3,7 +3,6 @@ from db import db
 from configdb import funcio,user_db
 from werkzeug.security import generate_password_hash,check_password_hash
 
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///funcionarios.db'
 app.config['SQLALCHEMY_BINDS'] = {
@@ -131,6 +130,22 @@ def alterar(id):
         return redirect(url_for('portal'))
     return render_template('alteracao.html', infos = funcio_selecio)
 
+@app.route('/excluir/<int:id>', methods=['POST'])
+def excluir_funcionario(id):
+    if 'usuario_logado' not in session:
+        flash('faça login se for do rh se não acesse!')
+        return redirect(url_for('index'))
+    usuario_atual = session['usuario_logado']
+    dados_funcionario = funcio.query.filter_by(user=usuario_atual).first()
+    cargo_atual = dados_funcionario.funcao.lower() if dados_funcionario and dados_funcionario.funcao else ""
+    if cargo_atual not in ('recursos humanos', 'rh'):
+        flash('essa pagina não é do seu acesso!')
+        return redirect(url_for('portal'))
+    funcionario_a_apagar = funcio.query.get_or_404(id)
+    db.session.delete(funcionario_a_apagar)
+    db.session.commit()
+    flash('Funcionário removido com sucesso!')
+    return redirect(url_for('portal'))
 
 if __name__ == '__main__':
     with app.app_context():
